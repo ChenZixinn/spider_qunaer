@@ -74,7 +74,11 @@ class QunaerSpider(scrapy.Spider):
             item_evalute.content = evalute.xpath("./div[1]/div[1]/div[@class='e_comment_content']").xpath('string(.)').extract()[0].replace("阅读全部", "")  # 内容
             item_evalute.send_time = evalute.xpath("./div[1]/div[1]/div[5]/ul/li[1]/text()").extract_first()  # 评论时间
             item_evalute.user_name = evalute.xpath("./div[2]/div[2]/a/text()").extract_first()  # 用户名
-            item_evalute.score = evalute.xpath("./div[1]/div[1]/div[2]/span/span/@class")  # 评分
+            score = evalute.xpath("./div[1]/div[1]/div[2]/span/span/@class").extract_first()
+            if score:
+                item_evalute.score = score.split("star_")[-1]   # 评分
+            else:
+                item_evalute.score = 0
             item_evalute.scenery_name = item_scenery.scenery_name  # 景点名
 
             print("item: ")
