@@ -48,7 +48,7 @@ class QunaerSpider(scrapy.Spider):
             item_scenery.play_time = play_time.split("：")[1]
         else:
             item_scenery.play_time =None
-        # yield item_scenery
+        yield item_scenery
 
         # 第一页评论
         self.get_evalute(response)
@@ -66,7 +66,6 @@ class QunaerSpider(scrapy.Spider):
             break
 
     def get_evalute(self, response):
-        print("1111111")
         item_scenery = response.meta["item_scenery"]
         evalute_list = response.xpath("//ul[@id='comment_box']/li")
         for evalute in evalute_list:
@@ -81,13 +80,7 @@ class QunaerSpider(scrapy.Spider):
                 item_evalute.score = 0
             item_evalute.scenery_name = item_scenery.scenery_name  # 景点名
 
-            print("item: ")
-            print(item_evalute.content)
-            print(item_evalute.send_time)
-            print(item_evalute.user_name)
-            print(item_evalute.score)
-            print(item_evalute.scenery_name)
+            yield item_evalute
             break
-            # yield item_evalute
 
 
