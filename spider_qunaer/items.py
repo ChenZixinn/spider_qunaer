@@ -13,7 +13,6 @@ class SpiderSceneryItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     # 景点名称，人数百分比，景点排名，评分，建议浏览时间
-    id = scrapy.Field()
     scenery_name = scrapy.Field()
     people_percent = scrapy.Field()
     rank = scrapy.Field()

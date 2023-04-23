@@ -1,0 +1,6 @@
+itemadapter==0.6.0
+lxml==4.9.0
+pandas==1.5.2
+PyMySQL==1.0.2
+Scrapy==2.6.1
+SQLAlchemy==1.4.46
